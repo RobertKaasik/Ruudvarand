@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 global D,t
 D=-1
-t="Нет решения!"
+t=0
+
 def lahenda():
     global D,t
     if (a.get()!="" and b.get()!="" and c.get()!=""):
@@ -44,7 +45,7 @@ def graafik():
         c_=int(c.get())
         x0=(-b_)/(2*a_)
         y0=a_*x0*x0+b_*x0+c_
-        x = np.arange(x0-10, x0+10, 0.5)#min max step
+        x = np.arange(x0-10, x0+10, 0.5)
         y=a_*x*x+b_*x+c_
         fig = plt.figure()
         plt.plot(x, y,'b:o', x0, y0,'g-d')
@@ -57,6 +58,65 @@ def graafik():
     else:
         text=f"График нет возможности построить"
     vastus.configure(text=f"D={D}\n{t}\n{text}")
+def veel():
+    global t
+    if t==0:
+        aken.geometry(str(aken.winfo_width())+"x"+str(aken.winfo_height()+200))
+        btn_veel.config(text="уменьшить окно")
+    else:
+        aken.geometry(str(aken.winfo_width())+"x"+str(aken.winfo_height()-200))
+        btn_veel.config(text="увеличить окно")
+        t=0
+def kala():
+    x1 = np.arange(0, 9, 0.5)#min max step
+    y1=(2/27)*x1*x1-3
+    x2 = np.arange(-10, 0, 0.5)
+    y2=0.04*x1*x1-3
+    x3 = np.arange(-9, 9.5, 0.5)
+    y3=(2/9)*(x3+6)**2+1
+    x4 = np.arange(-3, 9.5, 0.5)
+    y4=(-1/12)*(x4-3)**2+6
+    x5 = np.arange(5, 9, 0.5)
+    y5=(1/9)*(x5-5)**2+2
+    x6 = np.arange(-9, 9.5, 0.5)
+    y6=(2/9)*(x3+6)**2+1
+    x7 = np.arange(-13, -8.5, 0.5)
+    y7=(-0.75)*(x7+11)**2+6
+    x8 = np.arange(-15, -12.5, 0.5)
+    y8=(-0.5)*(x8+13)**2+3
+    x9 = np.arange(-15, -10, 0.5)
+    y9=[1]*len(x9)
+    x10 = np.arange(3, 4, 0.5)
+    y10=[3]*len(x10)
+    fig = plt.figure()
+    plt.plot(x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,x7,y7,x8,y8,x9,y9,x10,y10)
+    plt.title('Кит')
+    plt.ylabel('y')
+    plt.xlabel('x')
+    plt.grid(True)
+    plt.show()
+def ˇotski():
+    x1=np.arange(-9,-1,0.5)#min max step
+    y1=(-1/16)*(x1+5)**2+2
+    x2=np.arange(1,9,0.5)
+    y2=(-1/16)*(x2-5)**2+2
+    x3=np.arange(-9,-1,0.5)
+    y3=1/4*(x3+5)**2-3
+    x4=np.arange(1,9,0.5)
+    y4=1/4*(x4-5)**2-3
+    x5=np.arange(-9,-6,0.5)
+    y5=-(x5+7)**2+5
+    x6=np.arange(6,9,0.5)
+    y6=-(x6-7)**2+5
+    x7=np.arange(-1,1,0.5)
+    y7=(-0.5)*x7*x7+1.5
+    fig = plt.figure()
+    plt.plot(x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,x7,y7)
+    plt.title('Очки')
+    plt.ylabel('y')
+    plt.xlabel('x')
+    plt.grid(True)
+    plt.show()
 
 aken=Tk()
 aken.title("Решение квадртаного уровнения")
@@ -83,5 +143,6 @@ btn=Button(aken,text="Решить", font="Arial 20",bg="green",command=lahenda)
 btn.pack(side=LEFT)
 btn_g=Button(aken,text="График", font="Arial 20",bg="green",command=graafik)
 btn_g.pack(side=LEFT)
-
+btn_v=Button(aken,text="Размер", font="Arial 20",bg="green",command=kala)
+btn_v.pack(side=LEFT)
 aken.mainloop()
